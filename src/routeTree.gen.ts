@@ -11,7 +11,10 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DatosNasaRouteImport } from './routes/datos-nasa'
+import { Route as EventosRouteImport } from './routes/eventos'
 import { Route as ParcelaRouteImport } from './routes/parcela'
+import { Route as SimuladorRouteImport } from './routes/simulador'
+import { Route as SueloRouteImport } from './routes/suelo'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -23,40 +26,75 @@ const DatosNasaRoute = DatosNasaRouteImport.update({
   path: '/datos-nasa',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EventosRoute = EventosRouteImport.update({
+  id: '/eventos',
+  path: '/eventos',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ParcelaRoute = ParcelaRouteImport.update({
   id: '/parcela',
   path: '/parcela',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SimuladorRoute = SimuladorRouteImport.update({
+  id: '/simulador',
+  path: '/simulador',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SueloRoute = SueloRouteImport.update({
+  id: '/suelo',
+  path: '/suelo',
   getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/datos-nasa': typeof DatosNasaRoute
+  '/eventos': typeof EventosRoute
   '/parcela': typeof ParcelaRoute
+  '/simulador': typeof SimuladorRoute
+  '/suelo': typeof SueloRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/datos-nasa': typeof DatosNasaRoute
+  '/eventos': typeof EventosRoute
   '/parcela': typeof ParcelaRoute
+  '/simulador': typeof SimuladorRoute
+  '/suelo': typeof SueloRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/datos-nasa': typeof DatosNasaRoute
+  '/eventos': typeof EventosRoute
   '/parcela': typeof ParcelaRoute
+  '/simulador': typeof SimuladorRoute
+  '/suelo': typeof SueloRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/datos-nasa' | '/parcela'
+  fullPaths:
+    '/' | '/datos-nasa' | '/eventos' | '/parcela' | '/simulador' | '/suelo'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/datos-nasa' | '/parcela'
-  id: '__root__' | '/' | '/datos-nasa' | '/parcela'
+  to: '/' | '/datos-nasa' | '/eventos' | '/parcela' | '/simulador' | '/suelo'
+  id:
+    | '__root__'
+    | '/'
+    | '/datos-nasa'
+    | '/eventos'
+    | '/parcela'
+    | '/simulador'
+    | '/suelo'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DatosNasaRoute: typeof DatosNasaRoute
+  EventosRoute: typeof EventosRoute
   ParcelaRoute: typeof ParcelaRoute
+  SimuladorRoute: typeof SimuladorRoute
+  SueloRoute: typeof SueloRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -75,11 +113,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DatosNasaRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/eventos': {
+      id: '/eventos'
+      path: '/eventos'
+      fullPath: '/eventos'
+      preLoaderRoute: typeof EventosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/parcela': {
       id: '/parcela'
       path: '/parcela'
       fullPath: '/parcela'
       preLoaderRoute: typeof ParcelaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/simulador': {
+      id: '/simulador'
+      path: '/simulador'
+      fullPath: '/simulador'
+      preLoaderRoute: typeof SimuladorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/suelo': {
+      id: '/suelo'
+      path: '/suelo'
+      fullPath: '/suelo'
+      preLoaderRoute: typeof SueloRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -88,7 +147,10 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DatosNasaRoute: DatosNasaRoute,
+  EventosRoute: EventosRoute,
   ParcelaRoute: ParcelaRoute,
+  SimuladorRoute: SimuladorRoute,
+  SueloRoute: SueloRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
