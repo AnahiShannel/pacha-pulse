@@ -10,33 +10,53 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as DatosNasaRouteImport } from './routes/datos-nasa'
+import { Route as ParcelaRouteImport } from './routes/parcela'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DatosNasaRoute = DatosNasaRouteImport.update({
+  id: '/datos-nasa',
+  path: '/datos-nasa',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ParcelaRoute = ParcelaRouteImport.update({
+  id: '/parcela',
+  path: '/parcela',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/datos-nasa': typeof DatosNasaRoute
+  '/parcela': typeof ParcelaRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/datos-nasa': typeof DatosNasaRoute
+  '/parcela': typeof ParcelaRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/datos-nasa': typeof DatosNasaRoute
+  '/parcela': typeof ParcelaRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/datos-nasa' | '/parcela'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/datos-nasa' | '/parcela'
+  id: '__root__' | '/' | '/datos-nasa' | '/parcela'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  DatosNasaRoute: typeof DatosNasaRoute
+  ParcelaRoute: typeof ParcelaRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +68,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/datos-nasa': {
+      id: '/datos-nasa'
+      path: '/datos-nasa'
+      fullPath: '/datos-nasa'
+      preLoaderRoute: typeof DatosNasaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/parcela': {
+      id: '/parcela'
+      path: '/parcela'
+      fullPath: '/parcela'
+      preLoaderRoute: typeof ParcelaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  DatosNasaRoute: DatosNasaRoute,
+  ParcelaRoute: ParcelaRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
