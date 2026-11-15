@@ -33,7 +33,7 @@ function Page() {
           </button></li>
         ))}
       </ol>
-      <Panel title={steps[step]} icon={<Sprout className="h-5 w-5" />} action={<Demo />}>
+      <Panel title={steps[step]!} icon={<Sprout className="h-5 w-5" />} action={<Demo />}>
         {step === 0 && <div className="grid gap-3 md:grid-cols-3">{parcels.map(([n, d], i) => (
           <button key={n} onClick={() => setParcel(i)} aria-pressed={parcel === i} className={cn("panel-inner p-5 text-left", parcel === i && "ring-4 ring-moss")}><p className="text-3xl" aria-hidden>🏞️</p><p className="mt-2 font-serif text-lg font-bold">{n}</p><p className="text-sm text-muted-foreground">{d}</p></button>))}</div>}
         {step === 1 && <div className="grid grid-cols-2 gap-3 md:grid-cols-3 xl:grid-cols-6">{crops.map((c) => {
