@@ -21,7 +21,7 @@ function Page() {
   const [step, setStep] = useState(0);
   const [parcel, setParcel] = useState(0);
   const [sel, setSel] = useState<string[]>(["papa", "haba"]);
-  const radar = axes.map((a, i) => ({ a, A: scen[0].v[i], B: scen[1].v[i], C: scen[2].v[i] }));
+  const radar = axes.map((a, i) => ({ a, A: scen[0]!.v[i]!, B: scen[1]!.v[i]!, C: scen[2]!.v[i]! }));
   return (
     <>
       <PageBanner emoji="🌱" title="Simulador agrícola" subtitle="Prueba distintas siembras antes de mover la tierra." />
@@ -42,12 +42,12 @@ function Page() {
         })}</div>}
         {step === 2 && <div className="grid gap-4 md:grid-cols-3">{scen.map((s) => (
           <div key={s.n} className="panel-inner p-4"><p className="font-serif text-lg font-bold">{s.n}</p>
-            <div className="mt-3 flex items-center justify-between gap-1 text-2xl" aria-label="Rotación por campañas">{s.n.split("·")[1].split("→").map((x, i) => <span key={i} className="flex-1 rounded-lg bg-leaf py-2 text-center text-sm font-bold">{x.trim()}</span>)}</div>
+            <div className="mt-3 flex items-center justify-between gap-1 text-2xl" aria-label="Rotación por campañas">{s.n.split("·")[1]!.split("→").map((x, i) => <span key={i} className="flex-1 rounded-lg bg-leaf py-2 text-center text-sm font-bold">{x.trim()}</span>)}</div>
             <p className="mt-2 text-xs text-muted-foreground">Campaña 2026 → 2027 → 2028</p></div>))}</div>}
         {step === 3 && <div className="grid gap-5 xl:grid-cols-2">
-          <div className="panel-inner h-80 p-2"><ResponsiveContainer><RadarChart data={radar}><PolarGrid stroke="var(--border)" /><PolarAngleAxis dataKey="a" tick={{ fill: "var(--foreground)", fontSize: 12 }} />{(["A", "B", "C"] as const).map((k, i) => <Radar key={k} name={`Escenario ${k}`} dataKey={k} stroke={scen[i].c} fill={scen[i].c} fillOpacity={0.15} strokeWidth={2} />)}<Legend /></RadarChart></ResponsiveContainer></div>
+          <div className="panel-inner h-80 p-2"><ResponsiveContainer><RadarChart data={radar}><PolarGrid stroke="var(--border)" /><PolarAngleAxis dataKey="a" tick={{ fill: "var(--foreground)", fontSize: 12 }} />{(["A", "B", "C"] as const).map((k, i) => <Radar key={k} name={`Escenario ${k}`} dataKey={k} stroke={scen[i]!.c} fill={scen[i]!.c} fillOpacity={0.15} strokeWidth={2} />)}<Legend /></RadarChart></ResponsiveContainer></div>
           <div className="grid gap-3">{scen.map((s, i) => (
-            <div key={s.n} className="panel-inner p-4"><p className="mb-2 font-bold">{["🏆 ", "🌾 ", "⚠️ "][i]}{s.n}</p><div className="grid grid-cols-2 gap-x-4 gap-y-2">{axes.map((a, j) => <Bar key={a} label={a} value={s.v[j]} tone={j === 5 ? "clay" : "moss"} />)}</div></div>))}</div>
+            <div key={s.n} className="panel-inner p-4"><p className="mb-2 font-bold">{["🏆 ", "🌾 ", "⚠️ "][i]}{s.n}</p><div className="grid grid-cols-2 gap-x-4 gap-y-2">{axes.map((a, j) => <Bar key={a} label={a} value={s.v[j]!} tone={j === 5 ? "clay" : "moss"} />)}</div></div>))}</div>
         </div>}
         <div className="mt-5 flex justify-between">
           <button className="btn-soft" disabled={step === 0} onClick={() => setStep(step - 1)}>← Atrás</button>

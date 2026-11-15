@@ -43,7 +43,7 @@ function Logo() {
 
 function Sidebar({ onNavigate }: { onNavigate?: () => void }) {
   const path = useRouterState({ select: (s) => s.location.pathname });
-  const [tip] = useState(() => tips[new Date().getDate() % tips.length]);
+  const [tip] = useState(() => tips[new Date().getDate() % tips.length]!);
   return (
     <div className="flex h-full flex-col gap-4 overflow-y-auto bg-forest p-4 text-warm">
       <Logo />

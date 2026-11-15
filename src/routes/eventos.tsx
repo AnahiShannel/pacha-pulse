@@ -16,7 +16,7 @@ const evs = [
 ];
 
 function Page() {
-  const [ev, setEv] = useState(evs[0]);
+  const [ev, setEv] = useState(evs[0]!);
   const [int, setInt] = useState(60);
   const [dur, setDur] = useState(15);
   const [crop, setCrop] = useState("papa");
