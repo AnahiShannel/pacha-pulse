@@ -11,8 +11,12 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DatosNasaRouteImport } from './routes/datos-nasa'
+import { Route as EcoguardRouteImport } from './routes/ecoguard'
+import { Route as EconomicoRouteImport } from './routes/economico'
 import { Route as EventosRouteImport } from './routes/eventos'
 import { Route as ParcelaRouteImport } from './routes/parcela'
+import { Route as ReportesRouteImport } from './routes/reportes'
+import { Route as RiegoRouteImport } from './routes/riego'
 import { Route as SimuladorRouteImport } from './routes/simulador'
 import { Route as SueloRouteImport } from './routes/suelo'
 
@@ -26,6 +30,16 @@ const DatosNasaRoute = DatosNasaRouteImport.update({
   path: '/datos-nasa',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EcoguardRoute = EcoguardRouteImport.update({
+  id: '/ecoguard',
+  path: '/ecoguard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EconomicoRoute = EconomicoRouteImport.update({
+  id: '/economico',
+  path: '/economico',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const EventosRoute = EventosRouteImport.update({
   id: '/eventos',
   path: '/eventos',
@@ -34,6 +48,16 @@ const EventosRoute = EventosRouteImport.update({
 const ParcelaRoute = ParcelaRouteImport.update({
   id: '/parcela',
   path: '/parcela',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReportesRoute = ReportesRouteImport.update({
+  id: '/reportes',
+  path: '/reportes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RiegoRoute = RiegoRouteImport.update({
+  id: '/riego',
+  path: '/riego',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SimuladorRoute = SimuladorRouteImport.update({
@@ -50,16 +74,24 @@ const SueloRoute = SueloRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/datos-nasa': typeof DatosNasaRoute
+  '/ecoguard': typeof EcoguardRoute
+  '/economico': typeof EconomicoRoute
   '/eventos': typeof EventosRoute
   '/parcela': typeof ParcelaRoute
+  '/reportes': typeof ReportesRoute
+  '/riego': typeof RiegoRoute
   '/simulador': typeof SimuladorRoute
   '/suelo': typeof SueloRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/datos-nasa': typeof DatosNasaRoute
+  '/ecoguard': typeof EcoguardRoute
+  '/economico': typeof EconomicoRoute
   '/eventos': typeof EventosRoute
   '/parcela': typeof ParcelaRoute
+  '/reportes': typeof ReportesRoute
+  '/riego': typeof RiegoRoute
   '/simulador': typeof SimuladorRoute
   '/suelo': typeof SueloRoute
 }
@@ -67,23 +99,50 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/datos-nasa': typeof DatosNasaRoute
+  '/ecoguard': typeof EcoguardRoute
+  '/economico': typeof EconomicoRoute
   '/eventos': typeof EventosRoute
   '/parcela': typeof ParcelaRoute
+  '/reportes': typeof ReportesRoute
+  '/riego': typeof RiegoRoute
   '/simulador': typeof SimuladorRoute
   '/suelo': typeof SueloRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/datos-nasa' | '/eventos' | '/parcela' | '/simulador' | '/suelo'
+    | '/'
+    | '/datos-nasa'
+    | '/ecoguard'
+    | '/economico'
+    | '/eventos'
+    | '/parcela'
+    | '/reportes'
+    | '/riego'
+    | '/simulador'
+    | '/suelo'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/datos-nasa' | '/eventos' | '/parcela' | '/simulador' | '/suelo'
+  to:
+    | '/'
+    | '/datos-nasa'
+    | '/ecoguard'
+    | '/economico'
+    | '/eventos'
+    | '/parcela'
+    | '/reportes'
+    | '/riego'
+    | '/simulador'
+    | '/suelo'
   id:
     | '__root__'
     | '/'
     | '/datos-nasa'
+    | '/ecoguard'
+    | '/economico'
     | '/eventos'
     | '/parcela'
+    | '/reportes'
+    | '/riego'
     | '/simulador'
     | '/suelo'
   fileRoutesById: FileRoutesById
@@ -91,8 +150,12 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DatosNasaRoute: typeof DatosNasaRoute
+  EcoguardRoute: typeof EcoguardRoute
+  EconomicoRoute: typeof EconomicoRoute
   EventosRoute: typeof EventosRoute
   ParcelaRoute: typeof ParcelaRoute
+  ReportesRoute: typeof ReportesRoute
+  RiegoRoute: typeof RiegoRoute
   SimuladorRoute: typeof SimuladorRoute
   SueloRoute: typeof SueloRoute
 }
@@ -113,6 +176,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DatosNasaRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/ecoguard': {
+      id: '/ecoguard'
+      path: '/ecoguard'
+      fullPath: '/ecoguard'
+      preLoaderRoute: typeof EcoguardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/economico': {
+      id: '/economico'
+      path: '/economico'
+      fullPath: '/economico'
+      preLoaderRoute: typeof EconomicoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/eventos': {
       id: '/eventos'
       path: '/eventos'
@@ -125,6 +202,20 @@ declare module '@tanstack/react-router' {
       path: '/parcela'
       fullPath: '/parcela'
       preLoaderRoute: typeof ParcelaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reportes': {
+      id: '/reportes'
+      path: '/reportes'
+      fullPath: '/reportes'
+      preLoaderRoute: typeof ReportesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/riego': {
+      id: '/riego'
+      path: '/riego'
+      fullPath: '/riego'
+      preLoaderRoute: typeof RiegoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/simulador': {
@@ -147,8 +238,12 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DatosNasaRoute: DatosNasaRoute,
+  EcoguardRoute: EcoguardRoute,
+  EconomicoRoute: EconomicoRoute,
   EventosRoute: EventosRoute,
   ParcelaRoute: ParcelaRoute,
+  ReportesRoute: ReportesRoute,
+  RiegoRoute: RiegoRoute,
   SimuladorRoute: SimuladorRoute,
   SueloRoute: SueloRoute,
 }

@@ -28,3 +28,5 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+- Shared shell (sidebar + mobile menu) lives in src/components/AppShell.tsx wrapped around <Outlet /> in __root; reusable panels/badges in src/components/kit.tsx so every module keeps the same cozy look.
